@@ -19,33 +19,22 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 export const All = () => {
-  const [wineContext, fetchWines] = useContext(WinesContext)
-  const [beerContext, fetchBeers] = useContext(BeersContext)
-  const [bookContext, fetchBooks] = useContext(BooksContext)
-
-  if (
-    !bookContext ||
-    !beerContext ||
-    !wineContext ||
-    !bookContext.books ||
-    !beerContext.beers ||
-    !wineContext.wines ||
-    bookContext.books.length < 1 ||
-    beerContext.beers.length < 1 ||
-    wineContext.wines.length < 1
-  ) {
-    return <Loader />
-  }
+  const [wineContext] = useContext(WinesContext)
+  const [beerContext] = useContext(BeersContext)
+  const [bookContext] = useContext(BooksContext)
 
   const classes = useStyles()
 
-  return (
-    <div className={classes.root}>
-      <Grid container spacing={3}>
-        <RenderItems headerText="Wines" items={wineContext.wines.slice(0, 5)} />
-        <RenderItems headerText="Beers" items={beerContext.beers.slice(0, 5)} />
-        <RenderItems headerText="Books" items={bookContext.books.slice(0, 5)} />
-      </Grid>
-    </div>
-  )
+  if (wineContext?.wines && beerContext?.beers && bookContext?.books) {
+    return (
+      <div className={classes.root}>
+        <Grid container spacing={3}>
+          <RenderItems headerText="Wines" items={wineContext?.wines?.slice(0, 5)} />
+          <RenderItems headerText="Beers" items={beerContext?.beers?.slice(0, 5)} />
+          <RenderItems headerText="Books" items={bookContext?.books?.slice(0, 5)} />
+        </Grid>
+      </div>
+    )
+  }
+  return <Loader />
 }

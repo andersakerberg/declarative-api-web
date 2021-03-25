@@ -1,3 +1,4 @@
+/* eslint-disable react/no-array-index-key */
 /* eslint-disable @typescript-eslint/ban-types */
 /* eslint-disable react/react-in-jsx-scope */
 import { Grid, Typography, Paper, makeStyles, IconButton } from '@material-ui/core'
@@ -69,10 +70,10 @@ export const RenderItems = ({ headerText, items }: RenderItemsProps) => {
           {getIconToUse(headerText)} {headerText}
         </Typography>
       </Grid>
-      {items.slice(0, 5).map((book) => {
+      {items.slice(0, 5).map((book, index) => {
         const asPrettyJson = JSON.stringify(book, null, 4)
         return (
-          <Grid item xs={6}>
+          <Grid key={`${headerText}-${index}`} item xs={6}>
             <Paper className={classes.paper}>
               <CopyToClipboard>
                 {({ copy }) => (
