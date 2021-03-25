@@ -14,10 +14,7 @@ export const BooksContext = createContext<[GetAllBooksResponse, () => void]>([
 interface BooksContextProviderProps {
   year: string
 }
-export const BooksContextProvider: FC<BooksContextProviderProps> = ({
-  children,
-  year,
-}) => (
+export const BooksContextProvider: FC<BooksContextProviderProps> = ({ children, year }) => (
   <GetContextTemplate
     context={BooksContext}
     errorMessage="Unable to get Books"

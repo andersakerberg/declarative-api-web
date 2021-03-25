@@ -4,7 +4,7 @@ import { WinesContext } from 'contexts/WinesContext'
 import { BeersContext } from 'contexts/BeersContext'
 import { BooksContext } from 'contexts/BooksContext'
 import Loader from 'components/Loader/Loader'
-import { Grid, makeStyles, Paper, Typography } from '@material-ui/core'
+import { Grid, makeStyles } from '@material-ui/core'
 
 import { RenderItems } from './renderItems'
 

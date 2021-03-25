@@ -69,23 +69,23 @@ export const RenderItems = ({ headerText, items }: RenderItemsProps) => {
           {getIconToUse(headerText)} {headerText}
         </Typography>
       </Grid>
-      {items.slice(0, 5).map((book) => (
-        <Grid item xs={6}>
-          <Paper className={classes.paper}>
-            <CopyToClipboard>
-              {({ copy }) => (
-                <IconButton
-                  className={classes.topRightButton}
-                  onClick={() => copy(JSON.stringify(book, null, 2))}
-                >
-                  <GrCopy />
-                </IconButton>
-              )}
-            </CopyToClipboard>
-            <pre>{JSON.stringify(book, null, 2)}</pre>
-          </Paper>
-        </Grid>
-      ))}
+      {items.slice(0, 5).map((book) => {
+        const asPrettyJson = JSON.stringify(book, null, 4)
+        return (
+          <Grid item xs={6}>
+            <Paper className={classes.paper}>
+              <CopyToClipboard>
+                {({ copy }) => (
+                  <IconButton className={classes.topRightButton} onClick={() => copy(asPrettyJson)}>
+                    <GrCopy />
+                  </IconButton>
+                )}
+              </CopyToClipboard>
+              <pre>{asPrettyJson}</pre>
+            </Paper>
+          </Grid>
+        )
+      })}
     </>
   )
 }
